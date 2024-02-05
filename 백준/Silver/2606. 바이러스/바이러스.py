@@ -1,30 +1,20 @@
-n = int(input())
+v = int(input())
+e = int(input())
 
-m = int(input())
+graph = [[] for _ in range(v + 1)]
 
-data = []
+for _ in range(e):
+    a, b = map(int, input().split())
+    graph[a].append(b)
+    graph[b].append(a)
 
-for _ in range(m):
-    data.append(tuple(map(int, input().split())))
-
-data.sort()
-
-visited = [0 for _ in range(n)]
+visited =[0 for _ in range(v + 1)]
 
 def dfs(start):
-  visited[start - 1] = 1
-  for d in data:
-      if d[0] == start and visited[d[1] - 1] == 0:
-        dfs(d[1])
-      elif d[1] == start and visited[d[0] - 1] == 0:
-         dfs(d[0])
-
+    visited[start] = 1
+    for nx in graph[start]:
+        if visited[nx] == 0:
+            dfs(nx)
 
 dfs(1)
-
-count = 0
-for i in range(1, n):
-   if visited[i] == 1:
-      count += 1
-
-print(count)
+print(sum(visited) - 1)
