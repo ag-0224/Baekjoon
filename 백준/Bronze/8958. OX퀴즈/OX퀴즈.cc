@@ -4,28 +4,30 @@
 using namespace std;
 
 int main(void) {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
+	cin.tie(0)->sync_with_stdio(false);
 
-    int n;
-    cin >> n;
+	int n;
+	cin >> n;
 
-    string input;
-    for (int i = 0; i < n; i++) {
-        cin >> input;
+	
+	for (int i = 0; i < n; i++) {
+		int result = 0;
+		int count = 0;
 
-        int result = 0;
-        int count = 0;
-        for (int j = 0; j < input.length(); j++) {
-            if (input[j] == 'O') {
-                result += ++count;
-            }
-            else {
-                count = 0;
-            }
-        }
-        cout << result << '\n';
-    }
+		string str;
+		cin >> str;
+		
+		for (int j = 0; j < str.length(); j++) {
+			if (str[j] == 'O') {
+				result += ++count;
+			 }
+			else {
+				count = 0;
+			}
+			
+		}
+		cout << result << '\n';
+	}
 
-    return 0;
+	return 0;
 }
