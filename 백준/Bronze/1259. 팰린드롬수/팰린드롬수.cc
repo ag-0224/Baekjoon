@@ -3,35 +3,28 @@
 
 using namespace std;
 
+string str;
+int n;
+
 int main(void) {
+	cin.tie(0)->sync_with_stdio(false);
 
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
+	while (1) {
+		cin >> str;
 
-    string input;
+		if (str == "0") {
+			break;
+		}
 
-    while (1) {
-        cin >> input;
+		bool result = true;
+		for (int i = 0; i < str.size() / 2; i++) {
+			if (str[i] != str[str.size() - i - 1]) {
+				result = false;
+				break;
+			}
+		}
+		cout << (result ? "yes" : "no") << "\n";
+	}
 
-        if (input == "0") {
-            break;
-        }
-
-        int n;
-        n = input.length();
-        bool result = true;
-        for (int i = 0; i < n / 2; i++) {
-            if (input[i] != input[n - i - 1]) {
-                result = false;
-            }
-        }
-        if (result) {
-            cout << "yes" << "\n";
-        }
-        else {
-            cout << "no" << "\n";
-        }
-    }
-
-    return 0;
+	return 0;
 }
