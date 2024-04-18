@@ -1,13 +1,12 @@
 #include <iostream>
-#include <cmath>
 #include <string>
 
 using namespace std;
 
 int l;
-unsigned int a = 31;
-unsigned int m = 1234567891;
-unsigned int ans;
+long long r = 1;
+long long m = 1234567891;
+long long ans;
 string input;
 
 int main() {
@@ -18,10 +17,11 @@ int main() {
     cin >> input;
 
     for (int i = 0; i < l; i++) {
-        ans += (input[i] - 'a' + 1) * (unsigned int)pow(a, i) % m;
+        ans += ((long(input[i]) - 'a' + 1) * r) % m;
+        r = (r * 31) % m;
     }
 
-    cout << ans;
+    cout << ans % m;
     
     return 0;
 }
