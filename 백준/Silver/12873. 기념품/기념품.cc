@@ -1,19 +1,20 @@
 #include <iostream>
 #include <cmath>
-#include <deque>
+#include <queue>
 
 using namespace std;
 
 int n;
 
-deque<int> dq;
+queue <int> q;
 
 int main() {
 	cin.tie(0)->sync_with_stdio(false);
 
 	cin >> n;
+
 	for (int i = 1; i <= n; i++) {
-		dq.push_back(i);
+		q.push(i);
 	}
 
 	for (int i = 1; i <= n - 1; i++) {
@@ -22,11 +23,11 @@ int main() {
 		p %= (n - i + 1);
 
 		while (p--) {
-			dq.push_back(dq.front());
-			dq.pop_front();
+			q.push(q.front());
+			q.pop();
 		}
-		dq.pop_front();
+		q.pop();
 	}
 
-	cout << dq.front() << "\n";
+	cout << q.front() << "\n";
 }
