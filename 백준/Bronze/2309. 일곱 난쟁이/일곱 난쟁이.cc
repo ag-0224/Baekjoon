@@ -2,45 +2,40 @@
 
 using namespace std;
 
-int input;
+int a[9], sum;
+vector<int> v;
+pair<int, int> ret;
 
-vector <int> v;
-
-int main() {
-	cin.tie(NULL)->sync_with_stdio(false);
-
+void solve() {
 	for (int i = 0; i < 9; i++) {
-		cin >> input;
-		v.push_back(input);
-	}
-
-	for (int i = 0; i < 9; i++) {
-		for (int j = 0; j < 9; j++) {
-			vector <int> ret;
-
-			if (i == j) continue;
-
-			for (int k = 0; k < 9; k++) {
-				if (k == i || k == j) continue;
-				ret.push_back(v[k]);
-			}
-
-			int sum = 0;
-
-			for (int x : ret) {
-				sum += x;
-			}
-
-			if (sum == 100) {
-				sort(ret.begin(), ret.end());
-				for (int x : ret) {
-					cout << x << "\n";
-				}
-
-				return 0;
+		for (int j = 0; j < i; j++) {
+			if (sum - a[i] - a[j] == 100) {
+				ret = { i, j };
+				return;
 			}
 		}
 	}
+}
+
+int main() {
 	
+	for (int i = 0; i < 9; i++) {
+		cin >> a[i];
+		sum += a[i];
+	}
+
+	solve();
+
+	for (int i = 0; i < 9; i++) {
+		if (ret.first == i || ret.second == i) continue;
+		v.push_back(a[i]);
+	}
+
+	sort(v.begin(), v.end());
+
+	for (int x : v) {
+		cout << x << "\n";
+	}
+
 	return 0;
 }
