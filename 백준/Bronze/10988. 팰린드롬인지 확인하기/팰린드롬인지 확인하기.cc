@@ -1,24 +1,25 @@
-#include <iostream>
-#include <string>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-string input;
+string s;
 
 int main() {
-    cin.tie(0)->sync_with_stdio(false);
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
-    cin >> input;
+	cin >> s;
 
-    bool check = true;
-    for (int i = 0; i < input.size() / 2; i++) {
-        if (input[i] != input[input.size() - i - 1]) {
-            check = false;
-            break;
-        }
-    }
+	bool ret = true;
+	for (int i = 0; i < s.size() / 2; i++) {
+		if (s[i] != s[s.size() - i - 1]) {
+			ret = false;
+			break;
+		}
+	}
 
-    cout << (check ? 1 : 0);
+	cout << ret ? 1 : 0;
 
-    return 0;
+	return 0;
 }
