@@ -2,7 +2,7 @@
 
 using namespace std;
 
-string s;
+string s, temp;
 
 int main() {
 	ios_base::sync_with_stdio(false);
@@ -10,16 +10,11 @@ int main() {
 	cout.tie(NULL);
 
 	cin >> s;
+	temp = s;
 
-	bool ret = true;
-	for (int i = 0; i < s.size() / 2; i++) {
-		if (s[i] != s[s.size() - i - 1]) {
-			ret = false;
-			break;
-		}
-	}
+	reverse(temp.begin(), temp.end());
 
-	cout << ret ? 1 : 0;
+	cout << (s == temp ? 1 : 0);
 
 	return 0;
 }
