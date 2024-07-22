@@ -1,41 +1,60 @@
-#include <iostream>
-#include <vector>
-#include <set>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-int t;
-int n, m;
+int t, n, m; 
 int input;
 
+int binarySearch(vector<int>& v, int target) {
+	int start = 0;
+	int end = v.size() - 1;
+
+	int mid;
+
+	while (start <= end) {
+		mid = (start + end) / 2;
+
+		if (v[mid] == target) {
+			return 1;
+		}
+		else if (v[mid] < target) {
+			start = mid + 1;
+		}
+		else if (v[mid] > target) {
+			end = mid - 1;
+		}
+	}
+
+	return 0;
+}
+
 int main() {
-    cin.tie(0)->sync_with_stdio(false);
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
-    cin >> t;
+	cin >> t;
 
-    for (int i = 0; i < t; i++) {
-        cin >> n;
+	while (t--) {
+		cin >> n;
 
-        set <int> n1;
-        vector <int> n2;
+		vector<int> v;
 
-        for (int j = 0; j < n; j++) {
-            cin >> input;
-            n1.insert(input);
-        }
-        
-        cin >> m;
+		int temp;
+		for (int i = 0; i < n; i++) {
+			cin >> temp;
+			v.push_back(temp);
+		}
 
-        for (int j = 0; j < m; j++) {
-            cin >> input;
-            n2.push_back(input);
-        }
+		cin >> m;
 
-        for (int x : n2) {
-            cout << n1.count(x) << "\n";
-        }
+		sort(v.begin(), v.end());
 
-    }
+		for (int i = 0; i < m; i++) {
+			cin >> input;
+			cout << binarySearch(v, input) << "\n";
+		}
+	}
 
-    return 0;
+	return 0;
 }
