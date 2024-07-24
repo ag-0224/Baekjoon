@@ -1,32 +1,32 @@
-#include <iostream>
-#include <string>
-#include <map>
+#include <bits/stdc++.h>
 
 using namespace std;
 
 int n, m;
-string num;
-string name;
-string input;
-
-map <string, string> s;
+string s;
+map<string, int> mp;
+string a[100004];
 
 int main() {
-    cin.tie(0)->sync_with_stdio(false);
+	ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 
-    cin >> n >> m;
+	cin >> n >> m;
 
-    for (int i = 0; i < n; i++) {
-        cin >> name;
-        num = to_string(i + 1);
-        s.insert(make_pair(name, num));
-        s.insert(make_pair(num, name));
-    }
+	for (int i = 0; i < n; i++) {
+		cin >> s;
+		mp[s] = i + 1;
+		a[i + 1] = s;
+	}
 
-    for (int i = 0; i < m; i++) {
-        cin >> input;
-        cout << s[input] << "\n";
-    }
+	for (int i = 0; i < m; i++) {
+		cin >> s;
+		if (atoi(s.c_str()) == 0) {
+			cout << mp[s] << "\n";
+		}
+		else {
+			cout << a[atoi(s.c_str())] << "\n";
+		}
+	}
 
-    return 0;
+	return 0;
 }
