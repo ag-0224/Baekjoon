@@ -2,32 +2,21 @@
 
 using namespace std;
 
-int a, b, c;
-vector<int> v;
+int arr[3];
 
 int main() {
 	ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 
-	cin >> a >> b >> c;
+	for (int i = 0; i < 3; i++) cin >> arr[i];
 
-	v.push_back(a);
-	v.push_back(b);
-	v.push_back(c);
+	sort(arr, arr + 3);
 
-	sort(v.begin(), v.end());
+	int a = arr[1] - arr[0];
+	int b = arr[2] - arr[1];
 
-	int d1 = v[1] - v[0];
-	int d2 = v[2] - v[1];
-
-	if (d1 == d2) {
-		if (v[2] + d1 > 100) cout << v[0] - d1;
-		else cout << v[2] + d1;
-	}
-	else {
-		int d3 = abs(d1) > abs(d2) ? d2 : d1;
-		if (d3 == d1) cout << v[1] + d3;
-		else cout << v[1] - d3;
-	}
+	if (a == b) cout << arr[2] + a;
+	else if (a > b) cout << arr[0] + b;
+	else cout << arr[1] + a;
 
 	return 0;
 }
