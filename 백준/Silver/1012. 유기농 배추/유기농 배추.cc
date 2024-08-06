@@ -1,57 +1,59 @@
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-int T, M, N, K, X, Y, cnt;
-vector <vector<int>> graph;
-vector <vector<bool>> visited;
+int t;
+int n, m, k, y, x;
+int ret;
 
-int dy[4] = { 1, 0, -1, 0 };
-int dx[4] = { 0, 1, 0, -1 };
+int a[54][54];
+bool visited[54][54];
 
-void DFS(int y, int x) {
+const int dy[4] = { 1, 0, -1, 0 };
+const int dx[4] = { 0, 1, 0, -1 };
+
+void dfs(int y, int x) {
+	visited[y][x] = 1;
 	for (int i = 0; i < 4; i++) {
-		int yy = y + dy[i];
-		int xx = x + dx[i];
-		if (xx < 0 || xx >= M || yy < 0 || yy >= N || visited[yy][xx] || graph[yy][xx] != 1)
-			continue;
-		visited[yy][xx] = true;
-		DFS(yy, xx);
+		int ny = y + dy[i];
+		int nx = x + dx[i];
+
+		if (nx < 0 || nx >= m || ny < 0 || ny >= n) continue;
+		if (a[ny][nx] == 1 && !visited[ny][nx]) {
+			dfs(ny, nx);
+		}
 	}
 }
 
-int main(void) {
-	cin.tie(0)->sync_with_stdio(false);
+int main() {
+	ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 
-	cin >> T;
+	cin >> t;
 
-	for (int i = 0; i < T; i++) {
+	while (t--) {
+		cin >> m >> n >> k;
 
-		cin >> M >> N >> K;
+		memset(a, 0, sizeof(a));
+		memset(visited, 0, sizeof(visited));
 
-		graph = vector<vector<int>>(N, vector<int>(M));
-		visited = vector<vector<bool>>(N, vector<bool>(M, false));
+		while (k--) {
+			cin >> x >> y;
 
-		for (int j = 0; j < K; j++) {
-			cin >> X >> Y;
-
-			graph[Y][X] = 1;
+			a[y][x] = 1;
 		}
 
-		cnt = 0;
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < M; j++) {
-				if (!visited[i][j] && graph[i][j] == 1) {
-					visited[i][j] = true;
-					cnt++;
-					DFS(i, j);
+		ret = 0;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				if (a[i][j] == 1 && !visited[i][j]) {
+					dfs(i, j);
+					ret++;
 				}
 			}
 		}
 
-		cout << cnt << "\n";
+		cout << ret << "\n";
 	}
-	
+
 	return 0;
 }
