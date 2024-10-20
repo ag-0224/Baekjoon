@@ -2,8 +2,8 @@
 
 using namespace std;
 
-int a[26];
 string s;
+int a[26];
 
 int main() {
 	ios_base::sync_with_stdio(false);
@@ -12,13 +12,13 @@ int main() {
 
 	cin >> s;
 
-	memset(a, 0, sizeof(a));
-
-	for (int i = 0; i < s.size(); i++) {
-		a[s[i] - 'a'] += 1;
+	for (char x : s) {
+		a[x - 'a']++;
 	}
 
-	for (int x : a) cout << x << " ";
+	for (int i : a) {
+		cout << i << " ";
+	}
 
 	return 0;
 }
