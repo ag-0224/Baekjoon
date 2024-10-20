@@ -2,30 +2,30 @@
 
 using namespace std;
 
-int n;
-string str;
-map <char, int> mp;
+int n, cnt[26];
+string s;
 
 int main() {
-	ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
 	cin >> n;
 
-	for (int i = 0; i < n; i++) {
-		cin >> str;
-
-		mp[str[0]]++;
+	while (n--) {
+		cin >> s;
+		cnt[s[0] - 'a']++;
 	}
 
-	bool check = false;
-	for (auto it = mp.begin(); it != mp.end(); it++) {
-		if ((*it).second >= 5) {
-			cout << (*it).first;
-			check = true;
+	bool ret = false;
+	for (int i = 0; i < 26; i++) {
+		if (cnt[i] >= 5) {
+			ret = true;
+			cout << char(i + 'a');
 		}
 	}
 
-	if (!check) cout << "PREDAJA";
+	if (!ret) cout << "PREDAJA";
 
 	return 0;
 }
