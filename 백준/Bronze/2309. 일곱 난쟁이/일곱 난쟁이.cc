@@ -2,39 +2,30 @@
 
 using namespace std;
 
-int n;
-vector<int> v;
-
-void solve() {
-	
-	do {
-		int sum = 0;
-
-		for (int i = 0; i < 7; i++) {
-			sum += v[i];
-		}
-
-		if (sum == 100) {
-			for (int i = 0; i < 7; i++) {
-				cout << v[i] << "\n";
-			}
-
-			break;
-		}
-
-	} while (next_permutation(v.begin(), v.end()));
-}
+int a[9];
 
 int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
 	for (int i = 0; i < 9; i++) {
-		cin >> n;
-		v.push_back(n);
+		cin >> a[i];
 	}
 
-	sort(v.begin(), v.end());
+	sort(a, a + 9);
 
-	solve();
+	do {
+
+		int sum = accumulate(a, a + 7, 0);
+
+		if (sum == 100) break;
+
+	} while (next_permutation(a, a + 9));
+
+	for (int i = 0; i < 7; i++) {
+		cout << a[i] << "\n";
+	}
 
 	return 0;
 }
