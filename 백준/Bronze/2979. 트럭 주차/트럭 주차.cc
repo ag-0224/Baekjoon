@@ -2,12 +2,8 @@
 
 using namespace std;
 
-int arr[101];
-
-int a, b, c;
-int s, e;
-
-int ret;
+int a, b, c, s, e;
+int cnt[104], ret;
 
 int main() {
 	ios_base::sync_with_stdio(false);
@@ -18,16 +14,15 @@ int main() {
 
 	for (int i = 0; i < 3; i++) {
 		cin >> s >> e;
-
 		for (int j = s; j < e; j++) {
-			arr[j]++;
+			cnt[j]++;
 		}
 	}
 
-	for (int x : arr) {
-		if (x == 3) ret += c * 3;
-		else if (x == 2) ret += b * 2;
-		else if (x == 1) ret += a;
+	for (int x : cnt) {
+		if (x == 3) ret += x * c;
+		else if (x == 2) ret += x * b;
+		else if (x == 1) ret += x * a;
 	}
 
 	cout << ret;
