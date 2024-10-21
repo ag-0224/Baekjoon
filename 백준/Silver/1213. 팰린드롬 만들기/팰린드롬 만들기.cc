@@ -2,42 +2,36 @@
 
 using namespace std;
 
-int cnt;
-string s, ret;
-map<char, int> _map;
+string s, p, mid, ret;
+map<char, int> mp;
 
 int main() {
-	ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
 	cin >> s;
 
-	for (int i = 0; i < s.size(); i++) {
-		_map[s[i]]++;
+	for (char x : s) {
+		mp[x]++;
 	}
 
-	string mid = "";
-	string ret = "";
-	for (auto x : _map) {
-		for (int i = 0; i < x.second / 2; i++) ret += x.first;
-		if (x.second % 2 == 1) {
-			mid += x.first;
+	for (auto x : mp) {
+		for (int i = 0; i < x.second / 2; i++) {
+			p += x.first;
 		}
+		if (x.second % 2 == 1) mid += x.first;
 	}
 	
-	sort(ret.begin(), ret.end());
+	ret += p + mid;
+	reverse(p.begin(), p.end());
+	ret += p;
 
-	string t = ret;
-	reverse(t.begin(), t.end());
-	
-	string tmp = mid;
+	string tmp = ret;
 	reverse(tmp.begin(), tmp.end());
-	
-	if (tmp == mid) {
-		ret += mid;
-		ret += t;
-		cout << ret << "\n";
-	}
-	else cout << "I'm Sorry Hansoo" << "\n";
+
+	if (ret == tmp) cout << ret;
+	else cout << "I'm Sorry Hansoo";
 
 	return 0;
 }
