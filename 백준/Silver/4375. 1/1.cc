@@ -4,17 +4,18 @@ using namespace std;
 
 typedef long long ll;
 
-ll n, ret;
-int cnt;
+ll n, ret, cnt;
 
 int main() {
-	ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
 	while (cin >> n) {
+
 		ret = 1;
 		cnt = 1;
-
-		while (ret % n != 0) {
+		while (ret % n) {
 			ret = ret * 10 + 1;
 			ret %= n;
 			cnt++;
