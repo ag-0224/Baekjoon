@@ -2,29 +2,31 @@
 
 using namespace std;
 
-int n, ret;
+int n, cnt;
 string s;
 
 int main() {
-	ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
 	cin >> n;
-
-	while (n--) {
+	
+	for (int i = 0; i < n; i++) {
 		cin >> s;
 
 		stack<char> stk;
 
-		for (int i = 0; i < s.size(); i++) {
-			if (stk.empty()) stk.push(s[i]);
-			else if (stk.top() == s[i]) stk.pop();
-			else if (stk.top() != s[i]) stk.push(s[i]);
+		for (char c : s) {
+			if (stk.empty()) stk.push(c);
+			else if (stk.top() == c) stk.pop();
+			else stk.push(c);
 		}
 
-		if (stk.empty()) ret++;
+		if (stk.empty()) cnt++;
 	}
 
-	cout << ret << "\n";
+	cout << cnt << "\n";
 
 	return 0;
-} 
+}
